@@ -1,0 +1,179 @@
+/* Global styles */
+
+header {
+    position: fixed;
+    top: 0;
+    margin-bottom: 20px;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #F5F5F5;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #FFF;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: bold;
+    margin-top: 0;
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="password"],
+select,
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: #FFF;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #3e8e41;
+}
+
+/* Registration form styles */
+
+.registration-form {
+    width: 100%;
+}
+
+.registration-form label {
+    font-weight: bold;
+}
+
+.registration-form input[type="submit"] {
+    margin-top: 20px;
+}
+
+/* Quiz styles */
+
+.quiz {
+    width: 100%;
+}
+
+.quiz .question {
+    margin-bottom: 20px;
+}
+
+.quiz .answers {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.quiz .answer {
+    width: 48%;
+    margin-right: 4%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.quiz .answer:hover {
+    background-color: #F5F5F5;
+}
+
+.quiz .answer.selected {
+    background-color: #4CAF50;
+    color: #FFF;
+}
+
+.quiz .answer.correct {
+    background-color: #4CAF50;
+    color: #FFF;
+}
+
+.quiz .answer.incorrect {
+    background-color: #f44336;
+    color: #FFF;
+}
+
+.quiz .submit {
+    margin-top: 20px;
+}
+
+/* Congratulations styles */
+
+.congratulations {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.congratulations h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.congratulations p {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.congratulations button {
+    margin-top: 20px;
+}
+
+/* Payment styles */
+
+.payment-form {
+    width: 100%;
+}
+
+.payment-form label {
+    font-weight: bold;
+}
+
+.payment-form input[type="submit"] {
+    margin-top: 20px;
+}
+
+.payment-form .payment-option {
+    margin-top: 20px;
+}
+
+.payment-form .payment-option label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.payment-form .payment-option input[type="radio"] {
+    margin-right: 10px;
+}
+
+.payment-form .payment-option .mpesa-details {
+    display: none;
+}
+
+.payment-form .payment-option input[type="radio"]:checked+.mpesa-details {
+    display: block;
+}
