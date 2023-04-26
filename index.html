@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>SafariExpress Game</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1>SafariExpress Game</h1>
+    </header>
+    <main>
+        <section id="registration">
+            <section id="registration">
+                <h2>Registration</h2>
+                <form id="registrationForm">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                    <label for="phone">Phone Number:</label>
+                    <input type="tel" id="phone" name="phone" required>
+                    <button type="submit">Register</button>
+                </form>
+                <p id="registrationMessage"></p>
+            </section>
+            <section id="welcome">
+                <h2>Welcome</h2>
+                <p id="welcomeMessage"></p>
+                <button id="startGame">Start Level 1</button>
+            </section>
+            <section id="login">
+                <h2>Login</h2>
+                <form id="loginForm">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                    <button type="submit">Login</button>
+                </form>
+                <p id="loginMessage"></p>
+            </section>
+
+            <section id="dashboard">
+                <h2>Welcome, <span id="username"></span>!</h2>
+                <button id="level1-btn">Start Level 1</button>
+            </section>
+
+            <section id="level1">
+                <h2>Level 1</h2>
+                <div id="question1">
+                    <h3>Question 1</h3>
+                    <p>What is the capital city of Kenya?</p>
+                    <label><input type="radio" name="q1" value="a">A. Nairobi</label><br>
+                    <label><input type="radio" name="q1" value="b">B. Mombasa</label><br>
+                    <label><input type="radio" name="q1" value="c">C. Kisumu</label><br>
+                </div>
+
+                <div id="question2">
+                    <h3>Question 2</h3>
+                    <p>What is the highest mountain in Kenya?</p>
+                    <label><input type="radio" name="q2" value="a">A. Mount Kenya</label><br>
+                    <label><input type="radio" name="q2" value="b">B. Mount Kilimanjaro</label><br>
+                    <label><input type="radio" name="q2" value="c">C. Mount Elgon</label><br>
+                </div>
+
+                <div id="question3">
+                    <h3>Question 3</h3>
+                    <p>What is the largest national park in Kenya?</p>
+                    <label><input type="radio" name="q3" value="a">A. Tsavo East</label><br>
+                    <label><input type="radio" name="q3" value="b">B. Maasai Mara</label><br>
+                    <label><input type="radio" name="q3" value="c">C. Amboseli</label><br>
+                </div>
+
+                <button id="level1-submit">Submit</button>
+            </section>
+
+            <section id="level2">
+                <h2>Level 2</h2>
+                <div id="question4">
+                    <h3>Question 4</h3>
+                    <p>What is the most common predator in the Maasai Mara?</p>
+                    <label><input type="radio" name="q4" value="a">A. Lion</label><br>
+                    <label><input
