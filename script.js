@@ -80,35 +80,44 @@ function shuffleArray(array) {
     return array;
 }
 
-// Start the game
-function startGame() {
-    // Get user inputs from registration form
-    const name = document.getElementById("name").value;
-    const phone = document.getElementById("phone").value;
 
-    // validate user inputs
-    if (name === "" || phone === "") {
-        alert("Please enter your name and phone number.");
+
+window.onload = function () {
+    // Hide other sections
+    document.getElementById("welcome-section").style.display = "none";
+    document.getElementById("quiz-levels-section").style.display = "none";
+    document.getElementById("quiz-section").style.display = "none";
+
+    // Add event listener to login form submit button
+    const loginForm = document.getElementById("login-form");
+    loginForm.addEventListener("submit", (event) => {
+        event.preventDefault(); // prevent form submission
+        startGame();
+    });
+}
+
+function startGame() {
+    // Get user inputs from login form
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+
+    // Validate user inputs
+    if (username === "" || password === "") {
+        alert("Please enter your username and password.");
         return;
     }
 
-    // store user data in local storage
-    const user = { name, phone };
-    localStorage.setItem("user", JSON.stringify(user));
-
-    // display welcome message with username
+    // Display welcome message with username
     const welcomeMsg = document.getElementById("welcome-msg");
-    welcomeMsg.textContent = welcomeMsg.textContent = `Welcome, ${name}!`;
+    welcomeMsg.textContent = `Welcome, ${username}!`;
 
+    // Hide login section
+    document.getElementById("login-section").style.display = "none";
 
-    // display button to start level 1
-    const startBtn = document.getElementById("start-btn");
-    startBtn.style.display = "block";
-
-    // hide registration form
-    const regForm = document.getElementById("reg-form");
-    regForm.style.display = "none";
+    // Show quiz levels section
+    document.getElementById("quiz-levels-section").style.display = "block";
 }
+
 
 function startLevel(level) {
     // get quiz questions for the specified level
@@ -162,3 +171,10 @@ function displayQuestion(question) {
         });
     });
 }
+
+const loginSection = document.getElementById("login-section");
+const dashboardSection = document.getElementById("dashboard-section");
+
+loginSection.style.display = "block";
+dashboardSection.style.display = "none";
+

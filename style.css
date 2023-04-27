@@ -11,6 +11,16 @@ body {
     background-color: #F5F5F5;
 }
 
+#registration,
+#welcome,
+#dashboard,
+#level1,
+#level2,
+#level3 {
+    display: none
+}
+
+
 .container {
     max-width: 800px;
     margin: 0 auto;
