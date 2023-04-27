@@ -44,15 +44,14 @@ const quizQuestions = [
         options: ["Tsavo East National Park", "Aberdare National Park", "Samburu National Reserve"],
         answer: "Tsavo East National Park"
     }
-
-    // define more questions here
 ];
 
 const quizLevels = [
-    { level: 1, numQuestions: 3 },
-    { level: 2, numQuestions: 3 },
-    { level: 3, numQuestions: 3 }
+    { level: 1, numQuestions: 3, passingScore: 67 },
+    { level: 2, numQuestions: 3, passingScore: 67 },
+    { level: 3, numQuestions: 3, passingScore: 67 }
 ];
+
 function startGame() {
     // get user inputs from registration form
     const name = document.getElementById("name").value;
@@ -90,81 +89,55 @@ function startLevel(level) {
         const question = questions[i];
         const questionDiv = document.createElement('div');
         const questionTitle = document.createElement('h3');
-        questionTitle.textContent = `Question ${i + 1}`;
+        questionTitle.textContent = question.question;
         questionDiv.appendChild(questionTitle);
-        const questionText = document.createElement('p');
-        questionText.textContent = question.text;
-        questionDiv.appendChild(questionText);
-        for (let j = 0; j < question.options.length; j++) {
-            const option = question.options[j];
-            const label = document.createElement('label');
-            const input = document.createElement('input');
-            input.type = 'radio';
-            input.name = `q${i + 1}`;
-            input.value = option.letter;
-            label.appendChild(input);
-            label.appendChild(document.createTextNode(` ${option.text}`));
-            questionDiv.appendChild(label);
-            questionDiv.appendChild(document.createElement('br'));
+        const options = question.options;
+        for (let j = 0; j < options.length; j++) {
+            const option = options[j];
+            const optionLabel = document.createElement('label');
+            optionLabel.textContent = option;
+            const optionInput = document.createElement('input');
+            optionInput.type = 'radio';
+            optionInput.name = `question_${i}`;
+            optionInput.value = option;
+            optionLabel.appendChild(optionInput);
+            questionDiv.appendChild(optionLabel);
         }
-        document.getElementById(`level${level}`).appendChild(questionDiv);
+        // add question to the DOM
+        const quizForm = document.getElementById('quizForm');
+        quizForm.appendChild(questionDiv);
     }
+    // display the submit button
+    const submitButton = document.createElement('button');
+    submitButton.textContent = 'Submit';
+    submitButton.addEventListener('click', function () {
+        // calculate and display the quiz results
+        const resultsDiv = document.getElementById('results');
+        const correctAnswers = questions.filter(question => question.answer === document.querySelector(`input[name="question_${question.id}"]:checked`).value);
+        resultsDiv.textContent = `You got ${correctAnswers.length} out of ${questions.length} questions correct!`;
 
-    // check quiz answers and update score
-    let numCorrect = 0;
-    for (let i = 0; i < questions.length; i++) {
-        const question = questions[i];
-        const selectedOption = document.querySelector(`input[name="q${i + 1}"]:checked`);
-        if (selectedOption && selectedOption.value === question.correctAnswer) {
-            numCorrect++;
-        }
-    }
-    const score = Math.round((numCorrect / questions.length) * 100);
-
-    // display congratulatory message if user passes level
-    if (score >= quizLevels[level - 1].passingScore) {
-        const congratsDiv = document.createElement('div');
-        congratsDiv.textContent = `Congratulations! You passed Level ${level} with a score of ${score}%.`;
-        document.getElementById(`level${level}`).appendChild(congratsDiv);
-
-        // ask user if they want to proceed to next level or tour Kenya
-        const proceedDiv = document.createElement('div');
-        proceedDiv.textContent = 'Do you want to proceed to the next level or take a tour of Kenya?';
+        // display the next level button
         const nextLevelButton = document.createElement('button');
         nextLevelButton.textContent = 'Next Level';
-        nextLevelButton.addEventListener('click', () => {
-            startLevel(level + 1);
+        nextLevelButton.addEventListener('click', function () {
+            // move to the next level or end the quiz if there are no more levels
+            if (level < quizLevels.length) {
+                startLevel(level + 1);
+            } else {
+                endQuiz();
+            }
         });
-        const tourButton = document.createElement('button');
-        tourButton.textContent = 'Tour Kenya';
+        resultsDiv.appendChild(nextLevelButton);
+    });
 
+    const quizForm = document.getElementById('quizForm');
+    quizForm.appendChild(submitButton);
+}
 
-        // ...
+function endQuiz() {
+    const quizForm = document.getElementById('quizForm');
+    quizForm.innerHTML = '<h3>Quiz Complete!</h3><p>Thank you for taking the quiz.</p>';
+    const resultsDiv = document.getElementById('results');
+    resultsDiv.innerHTML = '';
+}
 
-        // process payment and send SMS message if user chooses to tour Kenya
-        // ...
-
-        // repeat failed level or quit game if user fails level
-        // ...
-    }
-
-    function processPayment() {
-        // get user data from local storage
-        const user = JSON.parse(localStorage.getItem("user"));
-
-        // get payment amount and phone number from payment form
-        const amount = document.getElementById("amount").value;
-        const phone = document.getElementById("phone").value;
-
-        // validate payment inputs
-        if (amount === "" || phone === "") {
-            alert("Please enter payment amount and phone number.");
-            return;
-        }
-
-        // make payment using Africa's Talking payment API
-        // ...
-
-        // send booking details to user's phone using Africa's Talking SMS API
-        // ...
-    }
