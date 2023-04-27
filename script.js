@@ -1,64 +1,26 @@
-const quizQuestions = [
-    {
-        question: "What is the tallest animal in the world?",
-        options: ["Lion", "Elephant", "Giraffe", "Hippo"],
-        answer: "Giraffe"
-    },
-    {
-        question: "What is the national animal of Kenya?",
-        options: ["Lion", "Elephant", "Giraffe", "Leopard"],
-        answer: "Lion"
-    },
-    // define more questions here
-];
-
-const quizLevels = [
-    { level: 1, numQuestions: 3 },
-    { level: 2, numQuestions: 5 },
-    { level: 3, numQuestions: 9 }
-];
-function startGame() {
-    // get user inputs from registration form
-    const name = document.getElementById("name").value;
-    const phone = document.getElementById("phone").value;
-
-    // validate user inputs
-    if (name === "" || phone === "") {
-        alert("Please enter your name and phone number.");
-        return;
+numCorrect++;
     }
+  }
+const score = Math.round((numCorrect / questions.length) * 100);
 
-    // store user data in local storage
-    const user = { name, phone };
-    localStorage.setItem("user", JSON.stringify(user));
-
-    // display welcome message with username
-    const welcomeMsg = document.getElementById("welcome-msg");
-    welcomeMsg.textContent = `Welcome, ${name}!`;
-
-    // display button to start level 1
-    const startBtn = document.getElementById("start-btn");
-    startBtn.style.display = "block";
-
-    // hide registration form
-    const regForm = document.getElementById("reg-form");
-    regForm.style.display = "none";
-}
-
-function startLevel(level) {
-    // get quiz questions for the specified level
-    const questions = quizQuestions.slice(0, quizLevels[level - 1].numQuestions);
-
-    // display quiz questions and options
-    // ...
-
-    // check quiz answers and update score
-    // ...
-
-    // display congratulatory message if user passes level
-    // ...
+// display congratulatory message if user passes level
+if (score >= quizLevels[level - 1].passingScore) {
+    const congratsDiv = document.createElement('div');
+    congratsDiv.textContent = `Congratulations! You passed Level ${level} with a score of ${score}%.`;
+    document.getElementById(`level${level}`).appendChild(congratsDiv);
 
     // ask user if they want to proceed to next level or tour Kenya
+    const proceedDiv = document.createElement('div');
+    proceedDiv.textContent = 'Do you want to proceed to the next level or take a tour of Kenya?';
+    const nextLevelButton = document.createElement('button');
+    nextLevelButton.textContent = 'Next Level';
+    nextLevelButton.addEventListener('click', () => {
+        startLevel(level + 1);
+    });
+    const tourButton = document.createElement('button');
+    tourButton.textContent = 'Tour Kenya';
+
+
     // ...
 
     // process payment and send SMS message if user chooses to tour Kenya
